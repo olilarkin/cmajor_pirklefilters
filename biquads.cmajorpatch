@@ -1,0 +1,12 @@
+{
+    "CmajorVersion":    1,
+    "ID":               "com.OliLarkin.pirklebiquads",
+    "version":          "1.0",
+    "name":             "biquads",
+    "description":      "biquads by will pirkle",
+    "category":         "generator",
+    "manufacturer":     "Oli Larkin",
+    "isInstrument":     true,
+
+    "source":           "biquads.cmajor"
+}

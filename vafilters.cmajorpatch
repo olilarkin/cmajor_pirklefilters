@@ -1,0 +1,12 @@
+{
+    "CmajorVersion":    1,
+    "ID":               "com.OliLarkin.pirklevafilters",
+    "version":          "1.0",
+    "name":             "vafilters",
+    "description":      "vafilters by will pirkle",
+    "category":         "generator",
+    "manufacturer":     "Oli Larkin",
+    "isInstrument":     true,
+
+    "source":           "vafilters.cmajor"
+}
