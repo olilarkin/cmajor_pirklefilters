@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Cmajor Patch</title>
+</head>
+
+<body>
+  <div id="cmaj-outer-container">
+    <div id="cmaj-inner-container">
+      <button id="cmaj-start-button">Click to Start</button>
+    </div>
+  </div>
+</body>
+
+<style>
+    * { box-sizing: border-box; padding: 0; margin: 0; border: 0; }
+    html { background: black; overflow: hidden; }
+    body { padding: 0.5rem; display: block; position: absolute; width: 100%; height: 100%; }
+    #cmaj-outer-container { display: block; position: relative; width: 100%; height: 100%; overflow: auto; }
+    #cmaj-inner-container { display: block; position: relative; width: 100%; height: 100%; overflow: visible; transform-origin: 0% 0%; }
+    #cmaj-start-button { border: none; background-color: transparent; color: white; width: 100%; height: 100%; }
+</style>
+
+<script type="module">
+
+import * as patch from "./vafilters.js"
+import { createPatchView, scalePatchViewToFit } from "./cmaj_api/cmaj-patch-view.js"
+
+//==============================================================================
+document.getElementById ("cmaj-start-button").onclick = async function()
+{
+    const audioContext = new AudioContext();
+
+    const { node, connection }
+        = await patch.createAudioWorkletNodePatchConnection (audioContext, "cmaj-worklet-processor");
+
+    await patch.connectPatchToDefaultAudioAndMIDI (node, connection, audioContext);
+
+    const view = await createPatchView (connection);
+
+    if (view)
+    {
+        const outer = document.getElementById ("cmaj-outer-container");
+        const inner = document.getElementById ("cmaj-inner-container");
+
+        inner.innerHTML = "";
+        inner.appendChild (view);
+
+        const resizeObserver = new ResizeObserver (() => scalePatchViewToFit (view, inner, outer));
+        resizeObserver.observe (outer);
+
+        scalePatchViewToFit (view, inner, outer);
+    }
+}
+
+</script>
+</html>
