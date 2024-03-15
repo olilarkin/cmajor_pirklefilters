@@ -1,5 +1,5 @@
 
-# Filters by Will Pirkle ported to CMajor
+# Filters by Will Pirkle ported to Cmajor
 
 These filters are ported from the C++ projects in Will Pirkle's books
 and the application notes on his website
